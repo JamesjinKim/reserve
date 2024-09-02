@@ -48,13 +48,13 @@ def access():
         driver.find_element(By.XPATH, f'/html/body/form/div[4]/div[2]/div/div[1]/div[1]/div[1]/div/table/thead/tr[1]/th[3]/a').click()
         time.sleep(1)
         #지정 날짜 클릭하기.                           //*[@id="contents_UpdPandel"]/div[1]/div[1]/div/table/tbody/tr[2]/td[2]/a #세로(주차) #가로(요일)
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, f'/html/body/form/div[4]/div[2]/div/div[1]/div[1]/div[1]/div/table/tbody/tr[{weekVal}]/td[{dayVal}]/a'))
         )
         driver.find_element(By.XPATH, f'//*[@id="contents_UpdPandel"]/div[1]/div[1]/div/table/tbody/tr[{weekVal}]/td[{dayVal}]/a').click()
         time.sleep(1)
         #지정한 날짜의 티를 선택하기 
-        element = WebDriverWait(driver, 20).until(
+        element = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, f"/html/body/form/div[4]/div[2]/div/div[1]/div[1]/div[2]/div/div/div[{courseVal}]/div/table/tbody/tr[{teeVal}]/td[{buVal}]/a/p"))
         )        
         driver.find_element(By.XPATH, f'/html/body/form/div[4]/div[2]/div/div[1]/div[1]/div[2]/div/div/div[{courseVal}]/div/table/tbody/tr[{teeVal}]/td[{buVal}]/a/p').click()
@@ -67,7 +67,7 @@ def access():
 
         #예약하기 최종 OK!
         elem_btn = driver.find_element(By.ID, 'contents_lnkBtnReserveOk')
-        #elem_btn.click()  #예약완료 버튼
+        elem_btn.click()  #예약완료 버튼
         #print(f"{id} 1번 예약 완료~") 
     except TimeoutException:
         print("시간 초과: 요소를 찾지 못했습니다. 재시도 중...")
